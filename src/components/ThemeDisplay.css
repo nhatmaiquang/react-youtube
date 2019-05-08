@@ -1,0 +1,13 @@
+.dark {
+  background-color: black;
+  color: white;
+}
+
+.light {
+  background-color: aliceblue;
+}
+
+.theme-display {
+  justify-content: center;
+  align-items: center;
+}
