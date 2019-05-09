@@ -33,23 +33,29 @@ class App extends React.Component {
   render() {
     return (
       <div className="ui container">
-      <ThemeDisplay>
-        <Clock />
-        <SearchBar onFormSubmit={this.onTermSubmit}/>
-        <div className="ui grid">
-          <div className="ui row">
-            <div className="eleven wide column">
-              <VideoDetail video={this.state.selectedVideo} />
+        <ThemeDisplay>
+          <div className="ui grid">
+            <div className="header row">
+              <div className="twelve wide column" >
+                <SearchBar onFormSubmit={this.onTermSubmit}/>
+              </div>
+              <div className="four wide column" >
+                <Clock />
+              </div>
             </div>
-            <div className="five wide column">
-              <VideoList
-                onVideoSelect={this.onVideoSelect}
-                videos={this.state.videos}
-              />
+            <div className="videos row">
+              <div className="nine wide column">
+                <VideoDetail video={this.state.selectedVideo} />
+              </div>
+              <div className="seven wide column">
+                <VideoList
+                  onVideoSelect={this.onVideoSelect}
+                  videos={this.state.videos}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </ThemeDisplay>
+        </ThemeDisplay>
       </div>
     );
   }
