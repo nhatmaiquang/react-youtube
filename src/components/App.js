@@ -5,12 +5,13 @@ import VideoList from './VideoList';
 import VideoDetail from './VideoDetail';
 import Clock from './Clock';
 import ThemeDisplay from './ThemeDisplay';
+import customsearch from '../apis/customsearch';
 
 class App extends React.Component {
   state = {videos: [], selectedVideo: null };
 
   componentDidMount() {
-    this.onTermSubmit('Tan Cung Noi Nho');
+    this.onTermSubmit('AMEE');
   }
 
   onTermSubmit = async term => {
@@ -19,6 +20,14 @@ class App extends React.Component {
         q: term
       }
     });
+
+    const response2 = await customsearch.get('', {
+      params: {
+        q: term
+      }
+    });
+
+    console.log(response2);
 
     this.setState({
       videos: response.data.items,

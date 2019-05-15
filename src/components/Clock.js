@@ -26,9 +26,9 @@ setInterval(() => {
 
   render() {
     return (
-      <div className="clock">
-        <div className="clock-time">{this.state.time}</div>
-        <div className="clock-date">{this.state.date}</div>
+      <div className="ui huge blue labels" >
+        <div className="ui label">{this.state.time}</div>
+        <div className="ui label">{this.state.date}</div>
       </div>
     );
   }

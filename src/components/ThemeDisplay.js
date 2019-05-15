@@ -1,12 +1,14 @@
-import './ThemeDisplay.css';
+import '../css/ThemeDisplay.css';
 import React from 'react';
 
 const themeConfig = {
   light: {
-    text: 'Chào buổi sáng bạn êi'
+    text: 'Chào buổi sáng bạn êi',
+    iconName: 'sun'
   },
   dark: {
-    text: 'Chào buổi tối bạn êi'
+    text: 'Chào buổi tối bạn êi',
+    iconName: 'moon outline'
   }
 };
 
@@ -21,11 +23,12 @@ const getTheme = (hour) => {
 
 const ThemeDisplay = (props) => {
   const theme = getTheme(new Date().getHours());
-  const { text } = themeConfig[theme];
+  const { text, iconName } = themeConfig[theme];
 
   return (
     <div className = {`theme-display ${theme}`}>
       <h1>{text}</h1>
+      <i className = {`${iconName} icon`}></i>
       <div>{props.children}</div>
     </div>
   );
