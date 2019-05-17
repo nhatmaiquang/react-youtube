@@ -5,33 +5,44 @@ import VideoList from './VideoList';
 import VideoDetail from './VideoDetail';
 import Clock from './Clock';
 import ThemeDisplay from './ThemeDisplay';
-import customsearch from '../apis/customsearch';
+//import customsearch from '../apis/customsearch';
+import ImageList from './ImageList';
+import unsplash from '../apis/unsplash';
 
 class App extends React.Component {
-  state = {videos: [], selectedVideo: null };
+  state = {videos: [], selectedVideo: null, images: [] };
 
   componentDidMount() {
-    this.onTermSubmit('AMEE');
+    this.onTermSubmit('amee');
   }
 
   onTermSubmit = async term => {
-    const response = await youtube.get('/search', {
+    const responseYoutube = await youtube.get('/search', {
       params: {
         q: term
       }
     });
 
-    const response2 = await customsearch.get('', {
+    /*
+const responseCSE = await customsearch.get('', {
       params: {
-        q: term
+        q: term,
       }
     });
 
-    console.log(response2);
+    console.log(responseCSE);*/
+
+    const responseUnsplash = await unsplash.get('/search/photos', {
+      params: {
+        query: term
+      }
+    });
 
     this.setState({
-      videos: response.data.items,
-      selectedVideo: response.data.items[0]
+      videos: responseYoutube.data.items,
+      selectedVideo: responseYoutube.data.items[0],
+      //images: responseCSE.data.items
+      images: responseUnsplash.data.results
     });
   };
 
@@ -55,6 +66,7 @@ class App extends React.Component {
             <div className="videos row">
               <div className="nine wide column">
                 <VideoDetail video={this.state.selectedVideo} />
+                <ImageList images={this.state.images} />
               </div>
               <div className="seven wide column">
                 <VideoList
